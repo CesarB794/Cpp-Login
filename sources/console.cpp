@@ -24,7 +24,7 @@ void Console::RetryRegistryMenu()
 	std::cout<<"*-Repita su contraseña: "; std::cin>>this->aux_passwd;
 }
 
-auto Console::MainMenu()
+int Console::MainMenu()
 {
 	std::cout<<"***************************"<<std::endl; 
 	std::cout<<"*   		Bienvenido   			*"<<std::endl;
@@ -33,7 +33,7 @@ auto Console::MainMenu()
 	std::cout<<"*3-Salir.                 *"<<std::endl;
 	std::cout<<"*                         *"<<std::endl;
 	std::cout<<"*Opcion[1/2/3]: ";
-	return std::cin.get();
+	return std::stoi(std::to_string(std::cin.get()));
 }
 
 void Console::LoginMenu()
@@ -53,9 +53,15 @@ void Console::RegistryMenu()
 	std::cout<<"*-Nombre de usuario: "; std::cin>>this->T_user;
 	std::cout<<"*-Constraseña: "; std::cin>>this->T_passwd;
 	std::cout<<"*-Repita su contraseña: "; std::cin>>this->aux_passwd;
+	Clear();
+	std::cout<<"****************************"<<std::endl;
+	std::cout<<"* 		Registro Correcto.   *"<<std::endl;
+	std::cout<<"-0-Volver.....              "<<std::cin.get();
+	Clear();
+	MainMenu();
 }
 
-char Console::WelcomeMenu()
+int Console::WelcomeMenu()
 {
 	std::cout<<"****************************"<<std::endl;
 	std::cout<<"*        BIENVENIDO        *"<<std::endl;
@@ -63,7 +69,7 @@ char Console::WelcomeMenu()
 	std::cout<<"*1-Volver al menu principal."<<std::endl;
 	std::cout<<"*0-Salir                    "<<std::endl;
 	std::cout<<"Opcion[1/0]: ";
-	return std::cin.get();
+	return std::stoi(std::to_string(std::cin.get()));
 }
 
 Console::~Console()

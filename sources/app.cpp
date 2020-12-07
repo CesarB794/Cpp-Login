@@ -22,14 +22,19 @@ int App::Run()
 {
 	switch(this->MainMenu())
 	{
-		case '1':
+		case 1: 
 			{
 				this->Clear();
 				this->LoginMenu();
+				while(this->LoginCheck(this->T_user, this->T_passwd)==false)
+				{
+					this->Clear();
+					this->RetryLoginMenu();
+				}
 				if(this->LoginCheck(this->T_user, this->T_passwd)==true)
 				{
 					this->Clear();
-					if(this->WelcomeMenu()=='1')
+					if(this->WelcomeMenu()==1)
 					{
 						this->Clear();
 						this->MainMenu();
@@ -39,17 +44,18 @@ int App::Run()
 						return 0;
 					}
 
-				}
-				else
-				{
-					this->Clear();
-					this->RetryLoginMenu();
-					if(this->LoginCheck(this->T_user, this->T_passwd)==true)
-				}
-			}	
+				}	
+			}	break;
+		case 2:
+			{
+				this->RegistryMenu();
+			} break;
+		case 3:
+			return 0; break;
 	}
 	return 0;
 }
+
 App::~App()
 {
 

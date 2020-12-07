@@ -7,12 +7,12 @@ class Console
 		Console();	
 		void Clear();	
 		std::string T_name, T_lastname, T_user, T_passwd, aux_passwd;
-		auto MainMenu();
+		int MainMenu();
 		void LoginMenu();
 		void RetryLoginMenu();
 		void RegistryMenu();
 		void RetryRegistryMenu();
-		char WelcomeMenu();
+		int WelcomeMenu();
 		~Console();
 };
 #endif
