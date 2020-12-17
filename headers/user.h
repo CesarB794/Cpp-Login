@@ -3,7 +3,7 @@
 #include <string>
 class User
 {
-	private:
+	protected:
 		std::string Name;
 		std::string LastName;
 		std::string UserName;

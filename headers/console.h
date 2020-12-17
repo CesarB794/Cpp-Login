@@ -13,6 +13,7 @@ class Console
 		void RegistryMenu();
 		void RetryRegistryMenu();
 		int WelcomeMenu();
-		~Console();
+		int option;
+		virtual ~Console();
 };
 #endif

@@ -15,13 +15,25 @@ void Console::Clear()
 	#endif
 }
 
+void Console::RetryLoginMenu()
+{
+	std::cout<<"***************************"<<std::endl;
+	std::cout<<"*        Ingreso          *"<<std::endl;
+	std::cout<<"-Usuario: "; std::cin>>this->T_user;
+	std::cout<<"-Constraseña: "; std::cin>>this->T_passwd;	
+}
+
 void Console::RetryRegistryMenu()
 {
-	std::cout<<"*********************************"<<std::endl;
-	std::cout<<"*         Registro              *"<<std::endl;
-	std::cout<<"* Las contraseñas no coinciden! *"<<std::endl;
-	std::cout<<"*-Constraseña: "; std::cin>>this->T_passwd;
-	std::cout<<"*-Repita su contraseña: "; std::cin>>this->aux_passwd;
+	while(this->T_passwd!=this->aux_passwd)
+	{
+		Clear();
+		std::cout<<"*********************************"<<std::endl;
+		std::cout<<"*         Registro              *"<<std::endl;
+		std::cout<<"* Las contraseñas no coinciden! *"<<std::endl;
+		std::cout<<"*-Constraseña: "; std::cin>>this->T_passwd;
+		std::cout<<"*-Repita su contraseña: "; std::cin>>this->aux_passwd;
+	}
 }
 
 int Console::MainMenu()
@@ -32,8 +44,8 @@ int Console::MainMenu()
 	std::cout<<"*2-Registrarse.           *"<<std::endl;
 	std::cout<<"*3-Salir.                 *"<<std::endl;
 	std::cout<<"*                         *"<<std::endl;
-	std::cout<<"*Opcion[1/2/3]: ";
-	return std::stoi(std::to_string(std::cin.get()));
+	std::cout<<"*Opcion[1/2/3]: "; std::cin>>this->option;
+	return option;
 }
 
 void Console::LoginMenu()
@@ -53,12 +65,24 @@ void Console::RegistryMenu()
 	std::cout<<"*-Nombre de usuario: "; std::cin>>this->T_user;
 	std::cout<<"*-Constraseña: "; std::cin>>this->T_passwd;
 	std::cout<<"*-Repita su contraseña: "; std::cin>>this->aux_passwd;
-	Clear();
-	std::cout<<"****************************"<<std::endl;
-	std::cout<<"* 		Registro Correcto.   *"<<std::endl;
-	std::cout<<"-0-Volver.....              "<<std::cin.get();
-	Clear();
-	MainMenu();
+	if(this->T_passwd==this->aux_passwd)
+	{
+		Clear();
+		std::cout<<"****************************"<<std::endl;
+		std::cout<<"* 		Registro Correcto.   *"<<std::endl;
+		std::cout<<"-0-Volver.....              "<<std::cin.get();
+		Clear();
+		this->MainMenu();
+	} else{
+
+		this->RetryRegistryMenu();
+		Clear();
+		std::cout<<"****************************"<<std::endl;
+		std::cout<<"* 		Registro Correcto.   *"<<std::endl;
+		std::cout<<"-0-Volver.....              "<<std::cin.get();
+		Clear();
+		this->MainMenu();
+	}
 }
 
 int Console::WelcomeMenu()
